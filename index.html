@@ -1,5 +1,581 @@
-<p>
-    Add new pargraph
-</p>
-<h1>this is new repo</h1>
-<h2>this is a new feature</h1>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>CanMed — Medical Cannabis Solutions (Enhanced)</title>
+  <meta name="description" content="CanMed — premium medical cannabis: lab-tested products, grow guides, and expert consultations.">
+
+  <!-- Fonts & CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <!-- Swiper (sliders) -->
+  <link href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" rel="stylesheet">
+
+  <style>
+    :root{--accent-dark:#1a4d2e;--accent:#4f8a54;--muted:#6c757d;--bg:#f8faf9}
+    *{box-sizing:border-box}
+    body{font-family:'Poppins',sans-serif;color:#2c3e50;background:var(--bg);-webkit-font-smoothing:antialiased}
+    .top-bar{background:var(--accent-dark);color:#fff;padding:.45rem 0;font-size:.9rem}
+    .navbar{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.06);padding:1rem 0}
+    .navbar-brand{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--accent-dark)!important}
+    .btn-primary-custom{background:var(--accent);color:#fff;border:none;padding:.6rem 1.4rem;border-radius:30px;font-weight:600}
+    .btn-primary-custom:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(79,138,84,0.12)}
+
+    /* HERO (Swiper with parallax layers) */
+    .hero {padding:0}
+    .hero .swiper {width:100%;height:520px}
+    .hero-slide{position:relative;color:#fff;height:520px;display:flex;align-items:center}
+    .hero-slide .bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.6)}
+    .hero-slide .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,12,0.25),rgba(10,20,12,0.2))}
+    .hero-content{position:relative;z-index:6;padding:3rem}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4vw,3.4rem);line-height:1.05}
+    .hero p{color:rgba(255,255,255,0.92);margin-top:.7rem}
+
+    /* product carousel */
+    .product-card{background:#fff;border-radius:12px;padding:1rem;overflow:hidden;box-shadow:0 8px 30px rgba(12,18,10,0.06);transition:transform .35s,box-shadow .35s}
+    .product-card:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(12,18,10,0.12)}
+    .card-media{width:100%;height:180px;object-fit:cover;border-radius:8px}
+    .product-badge{display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent-dark));color:#06220d;padding:.25rem .6rem;border-radius:999px;font-weight:700;margin-top:.6rem}
+
+    /* features grid images */
+    .feature-img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+
+    /* subtle parallax helper */
+    .parallax{transform:translateZ(0)}
+
+    footer{background:#0d291a;color:#fff;padding:3rem 0}
+    footer a{color:rgba(255,255,255,0.85)}
+
+    /* responsive tweaks */
+    @media(max-width:768px){.hero .swiper{height:420px}.hero-slide{height:420px}}
+
+    /* reduce motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      .product-card, .hero, .swiper { transition: none !important; animation: none !important }
+    }
+  
+
+/* --- FIX: HERO SWIPER OVERLAP ISSUE --- */
+.hero-slider-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden !important;
+  z-index: 1;
+}
+
+.hero-slider-container .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+}
+
+.hero-slider-container img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 5 !important;
+}
+
+/* Fix for stacking issue */
+.swiper, .swiper-wrapper, .swiper-slide {
+  overflow: hidden !important;
+}
+
+
+.hero .swiper-slide {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.hero .bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+}
+
+</style>
+  <style>
+    /* --- Responsive Typography Enhancements --- */
+    :root {
+      --hero-title-size: clamp(2.4rem, 6vw, 5rem);
+      --hero-sub-size: clamp(1rem, 2.3vw, 1.5rem);
+    }
+
+    .hero h1 {
+      font-size: var(--hero-title-size) !important;
+      line-height: 1.15 !important;
+      letter-spacing: -1px;
+      text-shadow: 0 0 25px rgba(79, 138, 84, 0.4);
+    }
+
+    .hero p {
+      font-size: var(--hero-sub-size);
+      line-height: 1.6;
+      max-width: 650px;
+    }
+
+    /* --- Soft Glow Behind Title (Futuristic) --- */
+    .hero h1::before {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(rgba(79,138,84,0.4), transparent 60%);
+      filter: blur(60px);
+      top: -60px;
+      left: -30px;
+      z-index: -1;
+    }
+
+    /* --- Dark Overlay for Readability --- */
+    .swiper-slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+      z-index: 0;
+    }
+
+    .swiper-slide img {
+      filter: brightness(0.85);
+      transition: 0.5s ease-in-out;
+    }
+    .swiper-slide-active img {
+      filter: brightness(1);
+      transform: scale(1.05);
+    }
+
+    /* Parallax Effect */
+    .parallax {
+      transform: translateY(calc(var(--scroll) * 0.35));
+    }
+
+  </style>
+  <!-- SEO & Performance Enhancements -->
+  <link rel="canonical" href="https://yourdomain.example/">
+  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="medical cannabis, CBD, cannabis products, lab-tested, medical marijuana, wellness">
+
+  <!-- Open Graph (social preview) -->
+  <meta property="og:title" content="CanMed — Medical Cannabis Solutions">
+  <meta property="og:description" content="Premium, lab-tested cannabis products designed for therapeutic wellness.">
+  <meta property="og:image" content="https://yourdomain.example/assets/og/canmed-og.jpg">
+  <meta property="og:url" content="https://yourdomain.example/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@CanMed">
+
+  <!-- Preconnect & Preload critical assets -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" as="style">
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" as="style">
+  <link rel="preload" href="https://images.unsplash.com/photo-1519150268069-c094cfc0b3c2?q=80&w=1600&auto=format&fit=crop" as="image">
+
+  <!-- JSON-LD Structured Data: Organization + Sample Product + FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "CanMed",
+        "url": "https://yourdomain.example",
+        "logo": "https://yourdomain.example/assets/icons/icon-512.png",
+        "sameAs": ["https://www.facebook.com/your","https://www.instagram.com/your"]
+      },
+      {
+        "@type": "WebSite",
+        "url": "https://yourdomain.example",
+        "name": "CanMed",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://yourdomain.example/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Product",
+        "name": "Midnight Velvet",
+        "image": "https://yourdomain.example/assets/products/midnight-velvet.jpg",
+        "description": "Relaxing, earthy. 22% THC.",
+        "sku": "VF-001",
+        "brand": { "@type": "Brand", "name": "CanMed" },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://yourdomain.example/product/midnight-velvet",
+          "priceCurrency": "USD",
+          "price": "42.00",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is medical cannabis legal in my state?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Legality varies by jurisdiction. Consult local laws or your medical advisor." }
+          },
+          {
+            "@type": "Question",
+            "name": "Do your products have lab reports?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes — all products are third-party lab tested and reports are linked on each product page." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Minimal inline critical CSS trimmed and defer noncritical resources -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"></noscript>
+
+</head>
+<body>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container d-flex justify-content-between">
+      <div><i class="fas fa-phone-alt me-2"></i> +1 (800) 123-4567 <span class="ms-3"><i class="fas fa-envelope me-2"></i> info@canmed.com</span></div>
+      <div><i class="fas fa-clock me-2"></i> Mon - Fri: 9AM - 8PM</div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><i class="fas fa-cannabis me-2" style="color:var(--accent)"></i> CanMed</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="#benefits">Benefits</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item ms-3"><button class="btn btn-primary-custom">Get Consultation</button></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO (Swiper + GSAP parallax) -->
+  <section class="hero position-relative overflow-hidden" id="home">
+    <div class="swiper hero-swiper" style="height:100vh; width:100%; overflow:hidden;">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide hero-slide" data-swiper-parallax="-100">
+          <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1519150268069-c094cfc0b3c2?q=80&w=1600&auto=format&fit=crop');"></div>
+          <div class="overlay"></div>
+          <div class="container hero-content">
+            <div class="row">
+              <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
+                <span class="badge bg-success mb-3">Lab tested • Traceable</span>
+                <h1 class="fw-bold">Natural Healing Through Medical Cannabis</h1>
+                <p class="lead">Premium, lab-tested products designed for therapeutic wellness — curated by medical specialists.</p>
+                <div class="mt-4">
+                  <a href="#products" class="btn btn-primary-custom me-2">Explore Products</a>
+                  <a href="#learn" class="btn btn-outline-light text-white" style="border:2px solid rgba(255,255,255,0.18);">Learn More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide hero-slide" data-swiper-parallax="-100">
+          <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1505765050086-9f0b4b9a7a6f?q=80&w=1600&auto=format&fit=crop');background-position:center 30%;"></div>
+          <div class="overlay"></div>
+          <div class="container hero-content">
+            <div class="row">
+              <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
+                <span class="badge bg-success mb-3">100% Organic • No Pesticides</span>
+                <h1 class="fw-bold">Sustainably Grown, Patient Focused</h1>
+                <p class="lead">From our greenhouse to your medicine cabinet — transparency at every step.</p>
+                <div class="mt-4"><a href="#contact" class="btn btn-primary-custom">Get Consultation</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide hero-slide" data-swiper-parallax="-100">
+          <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=1600&auto=format&fit=crop');"></div>
+          <div class="overlay"></div>
+          <div class="container hero-content">
+            <div class="row">
+              <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
+                <span class="badge bg-success mb-3">Lab Results Published</span>
+                <h1 class="fw-bold">Trusted Extracts & Formulations</h1>
+                <p class="lead">Precise dosing, clean extracts — formulated for patient outcomes.</p>
+                <div class="mt-4"><a href="#products" class="btn btn-primary-custom">Shop Extracts</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- Pagination + arrows -->
+      <!-- <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div> -->
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section py-5" id="about">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6" data-aos="fade-right">
+          <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?q=80&w=900&auto=format&fit=crop" alt="lab oil bottle" class="img-fluid rounded-3">
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="section-subtitle text-success">About CanMed</div>
+          <h2 class="section-title">Your Trusted Medical Cannabis Partner</h2>
+          <p class="text-muted">Dedicated to providing the highest quality medical cannabis products and education to improve patient outcomes. Lab-verified, transparent, and sustainably grown.</p>
+          <div class="d-flex gap-3 mt-4">
+            <a href="#learn" class="btn btn-outline-dark">Grow & Learn</a>
+            <a href="#contact" class="btn btn-primary-custom">Partner with Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Carousel (Swiper) -->
+  <section class="product-section py-5 bg-white" id="products">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <div class="section-subtitle text-success">Our Products</div>
+          <h3 class="section-title">Premium Cannabis Solutions</h3>
+        </div>
+        <div>
+          <button id="featuredPrev" class="btn btn-outline-dark btn-sm me-2"><i class="fas fa-chevron-left"></i></button>
+          <button id="featuredNext" class="btn btn-outline-dark btn-sm"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <div class="swiper product-swiper" data-aos="fade-up">
+        <div class="swiper-wrapper">
+          <!-- Product slides (images replace icons) -->
+          <div class="swiper-slide">
+            <div class="product-card">
+              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1524594154903-9a7f9f7f0b0a?q=80&w=900&auto=format&fit=crop" alt="Midnight Velvet strain" class="card-media mb-3">
+              <div class="mb-2"><span class="product-badge">Indica</span></div>
+              <h5>Midnight Velvet</h5>
+              <p class="text-muted small">Relaxing, earthy • 22% THC</p>
+              <div class="d-flex justify-content-between align-items-center mt-3"><div class="fw-bold">$42</div><button class="btn btn-sm btn-primary-custom">Add</button></div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="product-card">
+              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1505765050086-9f0b4b9a7a6f?q=80&w=900&auto=format&fit=crop" alt="Solar Drift strain" class="card-media mb-3">
+              <div class="mb-2"><span class="product-badge">Sativa</span></div>
+              <h5>Solar Drift</h5>
+              <p class="text-muted small">Energetic, citrus • 20% THC</p>
+              <div class="d-flex justify-content-between align-items-center mt-3"><div class="fw-bold">$38</div><button class="btn btn-sm btn-primary-custom">Add</button></div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="product-card">
+              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=900&auto=format&fit=crop" alt="Neon Haze strain" class="card-media mb-3">
+              <div class="mb-2"><span class="product-badge">Hybrid</span></div>
+              <h5>Neon Haze</h5>
+              <p class="text-muted small">Balanced, floral • 18% THC</p>
+              <div class="d-flex justify-content-between align-items-center mt-3"><div class="fw-bold">$36</div><button class="btn btn-sm btn-primary-custom">Add</button></div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="product-card">
+              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=900&auto=format&fit=crop" alt="Lumen Extract" class="card-media mb-3">
+              <div class="mb-2"><span class="product-badge">Extract</span></div>
+              <h5>Lumen Extract 1g</h5>
+              <p class="text-muted small">Single-origin live resin</p>
+              <div class="d-flex justify-content-between align-items-center mt-3"><div class="fw-bold">$45</div><button class="btn btn-sm btn-primary-custom">Add</button></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features / Replace icons with images -->
+  <section class="features-section py-5 text-white" style="background:linear-gradient(135deg,var(--accent),var(--accent-dark));">
+    <div class="container">
+      <div class="text-center mb-4"><h3 class="section-title text-white">Why Choose CanMed</h3></div>
+      <div class="row g-4">
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="card p-3 h-100" style="background:rgba(255,255,255,0.04);border:none">
+            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1582719478182-5c9b38f5f0c1?q=80&w=800&auto=format&fit=crop" alt="lab testing" class="feature-img mb-3">
+            <h5>Lab Tested</h5>
+            <p class="small">Third-party testing for purity & potency.</p>
+          </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="card p-3 h-100" style="background:rgba(255,255,255,0.04);border:none">
+            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=800&auto=format&fit=crop" alt="organic farming" class="feature-img mb-3">
+            <h5>100% Organic</h5>
+            <p class="small">Naturally cultivated without pesticides.</p>
+          </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+          <div class="card p-3 h-100" style="background:rgba(255,255,255,0.04);border:none">
+            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1588774066762-bec3c1b8e47a?q=80&w=800&auto=format&fit=crop" alt="expert support" class="feature-img mb-3">
+            <h5>Expert Support</h5>
+            <p class="small">Professional guidance from medical specialists.</p>
+          </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+          <div class="card p-3 h-100" style="background:rgba(255,255,255,0.04);border:none">
+            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1519337265831-281ec6cc8514?q=80&w=800&auto=format&fit=crop" alt="fast delivery" class="feature-img mb-3">
+            <h5>Fast Delivery</h5>
+            <p class="small">Discreet, reliable shipping nationwide.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits & CTA -->
+  <section class="benefits-section py-5" id="benefits">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-5" data-aos="fade-right">
+          <div class="section-subtitle text-success">Health Benefits</div>
+          <h2 class="section-title">Therapeutic Properties of Medical Cannabis</h2>
+          <p class="text-muted">Cannabis can provide relief for conditions such as chronic pain, anxiety, sleep disorders, and inflammation. Our formulations are designed with patients in mind.</p>
+          <a class="btn btn-primary-custom mt-3" href="#learn">Read Research</a>
+        </div>
+        <div class="col-lg-7" data-aos="fade-left">
+          <div class="row g-3">
+            <div class="col-md-6"><div class="benefit-item p-3 bg-white rounded-3 shadow-sm"><h5>Pain Management</h5><p class="small text-muted mb-0">Effective relief for chronic pain and inflammation.</p></div></div>
+            <div class="col-md-6"><div class="benefit-item p-3 bg-white rounded-3 shadow-sm"><h5>Anxiety & Stress Relief</h5><p class="small text-muted mb-0">Natural calming effects for mental wellness.</p></div></div>
+            <div class="col-md-6"><div class="benefit-item p-3 bg-white rounded-3 shadow-sm"><h5>Sleep Support</h5><p class="small text-muted mb-0">Promotes restful sleep and healthy sleep patterns.</p></div></div>
+            <div class="col-md-6"><div class="benefit-item p-3 bg-white rounded-3 shadow-sm"><h5>Anti-Inflammatory</h5><p class="small text-muted mb-0">Reduces inflammation throughout the body.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section py-5 text-white" style="background:linear-gradient(135deg,var(--accent),var(--accent-dark));">
+    <div class="container text-center" data-aos="zoom-in">
+      <h2 class="mb-3">Ready to Start Your Wellness Journey?</h2>
+      <p class="mb-4">Get a free consultation with our medical cannabis specialists.</p>
+      <a class="btn btn-outline-light text-white" style="border:2px solid rgba(255,255,255,0.18);padding:.6rem 1.6rem;border-radius:30px;">Schedule Consultation</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h5 class="mb-3"><i class="fas fa-cannabis me-2"></i> CanMed</h5>
+          <p>Your trusted partner in medical cannabis wellness. Quality products, expert care.</p>
+          <div class="social-icons mt-2"><a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a><a href="#" class="me-2"><i class="fab fa-instagram"></i></a><a href="#" class="me-2"><i class="fab fa-twitter"></i></a></div>
+        </div>
+        <div class="col-md-2 mb-4"><h5>Quick Links</h5><ul class="list-unstyled footer-links"><li><a href="#">About Us</a></li><li><a href="#">Products</a></li><li><a href="#">Benefits</a></li><li><a href="#">FAQ</a></li></ul></div>
+        <div class="col-md-3 mb-4"><h5>Products</h5><ul class="list-unstyled footer-links"><li><a href="#">CBD Oils</a></li><li><a href="#">Topicals</a></li><li><a href="#">Capsules</a></li><li><a href="#">Edibles</a></li></ul></div>
+        <div class="col-md-3 mb-4"><h5>Contact</h5><p><i class="fas fa-map-marker-alt me-2"></i> 123 Medical Plaza, CA 90210</p><p><i class="fas fa-phone me-2"></i> +1 (800) 123-4567</p><p><i class="fas fa-envelope me-2"></i> info@canmed.com</p></div>
+      </div>
+      <hr style="border-color: rgba(255,255,255,0.08); margin: 2rem 0; opacity:.6">
+      <div class="text-center text-muted">&copy; <span id="year"></span> CanMed. All rights reserved. | Must be 21+ for purchase.</div>
+    </div>
+  </footer>
+
+  <!-- Scripts: Swiper, AOS, GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // helper
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Initialize AOS
+    AOS.init({duration:700,once:true,anchorPlacement:'top-bottom'});
+
+    // Hero Swiper (autoplay, fade) with parallax-like feel via GSAP ScrollTrigger
+    const heroSwiper = new Swiper('.hero-swiper',{
+      loop:true,autoplay:{delay:5000,disableOnInteraction:false},speed:900,effect:'fade',pagination:{el:'.swiper-pagination',clickable:true},navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'}
+    });
+
+    // Product Swiper (responsive carousel)
+    const productSwiper = new Swiper('.product-swiper',{slidesPerView:1,spaceBetween:18,loop:true,breakpoints:{576:{slidesPerView:2},992:{slidesPerView:3}},autoplay:{delay:3800,disableOnInteraction:false}});
+
+    // External arrow controls
+    document.getElementById('featuredPrev').addEventListener('click',()=>productSwiper.slidePrev());
+    document.getElementById('featuredNext').addEventListener('click',()=>productSwiper.slideNext());
+
+    // GSAP parallax for hero backgrounds (desktop only)
+    if(window.innerWidth>768){
+      gsap.utils.toArray('.hero-slide').forEach((slide, i)=>{
+        const bg = slide.querySelector('.bg');
+        if(!bg) return;
+        gsap.to(bg,{yPercent:15, ease:'none', scrollTrigger:{trigger:slide, start:'top bottom', end:'bottom top', scrub:0.6}});
+      });
+    }
+
+    // Product card micro-interaction: tilt on mousemove (lightweight)
+    document.querySelectorAll('.product-card').forEach(card=>{
+      card.addEventListener('mousemove', (e)=>{
+        const rect = card.getBoundingClientRect(); const x = (e.clientX - rect.left) / rect.width - 0.5; const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `perspective(900px) translateY(-6px) rotateX(${ -y*3 }deg) rotateY(${ x*6 }deg)`;
+      });
+      card.addEventListener('mouseleave', ()=>{ card.style.transform='translateY(0) rotateX(0) rotateY(0)'; card.style.transition='transform .5s ease'; setTimeout(()=>card.style.transition='',500); });
+    });
+
+    // Reduced motion fallback
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      heroSwiper.autoplay.stop(); productSwiper.autoplay.stop(); gsap.globalTimeline.clear();
+    }
+  </script>
+</body>
+</html>
